@@ -1,18 +1,51 @@
 from Address_Book import address_book
 from Contact import contact
+from utils import edit_contact, create_contact
 
-book = address_book()
+def main():
+    print("\n--- Wellcome to Address Book ---\n")
+    book = None
 
-first_name=input("\nEnter your first name: ")
-last_name=input("Enter your Last name: ")
-address=input("Enter your address: ")
-city=input("Enter your city: ")
-state=input("Enter your state: ")
-zip=input("Enter your zip code: ")
-phone_number=input("Enter your phone number: ")
-email=input("Enter your email: ")
+    while True:
+        print("1. Add/Initialize Address Book")
+        print("2. Create and Add Contact")
+        print("3. Display Contacts")
+        print("4. Edit Contact")
+        print("0. Quit")
+        
+        choice = input("Enter your choice: ")
 
-Contact = contact(first_name, last_name, address, city, state, zip, phone_number, email)
+        if choice == '1':
+            book = address_book()
+            print("\nAddress Book initialized.\n")
 
-book.add_contact(Contact)
-book.display_contacts()
+        elif choice == '2':
+            if book is None:
+                print("\nError: Please initialize the Address Book first (Option 1).\n")
+                continue
+
+            create_contact(book)
+            print("\nContact added successfully!\n")
+
+        elif choice == '3':
+            if book:
+                book.display_contacts()
+            else:
+                print("\nAddress book is empty or not initialized.\n")
+
+        elif choice == '4':
+            if book:
+                name = input("Enter the first name of the contact to edit: ")
+                edit_contact(book, name)
+            else:
+                print("\nAddress book is empty or not initialized.\n")
+
+        elif choice == '0':
+            print("Exiting...")
+            break
+
+        else:
+            print("\nInvalid choice. Please try again.\n")
+
+if __name__ == "__main__":
+    main()
