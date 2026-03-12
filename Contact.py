@@ -9,7 +9,6 @@ class contact:
         self.__zip = zip
         self.__email = email
         self.__phone_number = phone_number
-        print("Contact created")
 
         
     def display(self):
