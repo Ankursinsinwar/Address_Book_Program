@@ -18,7 +18,7 @@ class contact:
         print("State\t:", self.state)
         print("Zip\t:", self.zip)
         print("Phone\t:", self.phone_number)
-        print("Email\t:", self.email)
+        print("Email\t:", self.email, '\n')
 
     
 
