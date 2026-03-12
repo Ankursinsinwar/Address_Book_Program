@@ -3,7 +3,7 @@ from Contact import contact
 class address_book:
 
     def __init__(self):
-        self.contact=[]
+        self.contact=list()
 
     def add_contact(self,contact):
         self.contact.append(contact)
@@ -76,7 +76,8 @@ class address_book:
                             contact.email=email
                         case 0:
                             edit=False
-
+            else:
+                print("User not found!")
  
  
 
