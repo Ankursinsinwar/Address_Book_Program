@@ -1,6 +1,5 @@
 from Address_Book import address_book
 from Contact import contact
-from utils import edit_contact, create_contact
 
 def main():
     print("\n--- Wellcome to Address Book ---\n")
@@ -11,6 +10,7 @@ def main():
         print("2. Create and Add Contact")
         print("3. Display Contacts")
         print("4. Edit Contact")
+        print("5. Delete Contact")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -24,7 +24,7 @@ def main():
                 print("\nError: Please initialize the Address Book first (Option 1).\n")
                 continue
 
-            create_contact(book)
+            book.create_contact()
             print("\nContact added successfully!\n")
 
         elif choice == '3':
@@ -36,12 +36,18 @@ def main():
         elif choice == '4':
             if book:
                 name = input("Enter the first name of the contact to edit: ")
-                edit_contact(book, name)
+                book.edit_contact(name)
+            else:
+                print("\nAddress book is empty or not initialized.\n")
+            
+        elif choice == '5':
+            if book:
+                name = input("Enter the first name of the contact to edit: ")
+                book.delete(name)
             else:
                 print("\nAddress book is empty or not initialized.\n")
 
         elif choice == '0':
-            print("Exiting...")
             break
 
         else:
