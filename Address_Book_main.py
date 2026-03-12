@@ -3,16 +3,16 @@ from Contact import contact
 
 book = address_book()
 
-c1 = contact(
-    "Ankur",
-    "Sinsinwar",
-    "Township",
-    "Mathura",
-    "Uttar Pradesh",
-    "281006",
-    "9045735010",
-    "ayu@gmail.com"
-)
+first_name=input("\nEnter your first name: ")
+last_name=input("Enter your Last name: ")
+address=input("Enter your address: ")
+city=input("Enter your city: ")
+state=input("Enter your state: ")
+zip=input("Enter your zip code: ")
+phone_number=input("Enter your phone number: ")
+email=input("Enter your email: ")
 
-book.add_contact(c1)
+Contact = contact(first_name, last_name, address, city, state, zip, phone_number, email)
+
+book.add_contact(Contact)
 book.display_contacts()
