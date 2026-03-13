@@ -6,7 +6,8 @@ class Address_Book_Manager:
         self.__Adress_books={}
 
     def add_Adress_book(self,name):
-        self.__Adress_books[name] = address_book()
+        if name not in self.__Adress_books:
+            self.__Adress_books[name] = address_book()
         return self.__Adress_books[name]
 
 

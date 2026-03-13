@@ -29,7 +29,6 @@ def main():
                 continue
 
             book.create_contact()
-            print("\nContact added successfully!\n")
 
         elif choice == '3':
             if book:
