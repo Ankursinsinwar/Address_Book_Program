@@ -3,15 +3,16 @@ from Contact import contact
 class address_book:
 
     def __init__(self):
-        self.contact=list()
+        self.__contact=list()
 
     def add_contact(self,contact):
-        self.contact.append(contact)
+        self.__contact.append(contact)
 
     def display_contacts(self):
         print("\n--------- Contacts --------------\n")
-        for contact in self.contact:
+        for contact in self.__contact:
             contact.display()
+            print("-----------")
 
     
     def create_contact(self):
@@ -30,7 +31,7 @@ class address_book:
 
 
     def edit_contact(self, name):
-        for contact in self.contact:
+        for contact in self.__contact:
 
             if contact.first_name == name:
                 edit=True
@@ -83,9 +84,9 @@ class address_book:
 
     def delete(self,name):
         found=False
-        for contact in self.contact:
+        for contact in self.__contact:
             if contact.first_name==name:
-                self.contact.remove(contact)
+                self.__contact.remove(contact)
                 found=True
                 break   
         if(found==True):

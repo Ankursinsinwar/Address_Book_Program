@@ -1,8 +1,10 @@
+from Address_Book_Manager import Address_Book_Manager
 from Address_Book import address_book
 from Contact import contact
 
 def main():
     print("\n--- Wellcome to Address Book ---\n")
+    books = Address_Book_Manager()
     book = None
 
     while True:
@@ -11,12 +13,14 @@ def main():
         print("3. Display Contacts")
         print("4. Edit Contact")
         print("5. Delete Contact")
+        print("6. Display Contacts in all Address Books")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
 
         if choice == '1':
-            book = address_book()
+            bok_name = input("Enter address book name: ")
+            book = books.add_Adress_book(bok_name)
             print("\nAddress Book initialized.\n")
 
         elif choice == '2':
@@ -46,6 +50,9 @@ def main():
                 book.delete(name)
             else:
                 print("\nAddress book is empty or not initialized.\n")
+
+        elif choice == '6':
+            books.display_Adress_books()
 
         elif choice == '0':
             break
