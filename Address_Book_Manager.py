@@ -18,3 +18,11 @@ class Address_Book_Manager:
             Adress_book.display_contacts()
         print("\n----------------------\n")
 
+
+    def search_Person(self, city_state):
+        for name, book in self.__Adress_books.items():
+            for person in book.contact:
+                if person.city == city_state:
+                    print("Address book : ",name,', city : ',person.city,' name : ',person.first_name)
+                if person.state == city_state:
+                    print("Address book : ",name,', state : ',person.state,' name : ',person.first_name)

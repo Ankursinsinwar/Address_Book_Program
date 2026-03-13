@@ -14,6 +14,7 @@ def main():
         print("4. Edit Contact")
         print("5. Delete Contact")
         print("6. Display Contacts in all Address Books")
+        print("7. Display multiple person in the city or state in all Address Books")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -52,6 +53,12 @@ def main():
 
         elif choice == '6':
             books.display_Adress_books()
+
+        elif choice == '7':
+            city_state = input("Enter City or state: ")
+            books.search_Person(city_state)
+
+
 
         elif choice == '0':
             break

@@ -5,6 +5,10 @@ class address_book:
     def __init__(self):
         self.__contact=list()
 
+    @property
+    def contact(self):
+        return self.__contact
+
     def add_contact(self,contact):
         for cont in self.__contact:
             if cont.first_name == contact.first_name and cont.last_name == contact.last_name:
