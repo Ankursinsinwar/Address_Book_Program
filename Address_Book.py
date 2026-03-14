@@ -116,3 +116,37 @@ class address_book:
                 self.contact.sort(key=lambda person: person.state)
             case 'c':
                 self.contact.sort(key=lambda person: person.zip)
+
+
+        # Save contacts to file
+    def save_to_file(self, filename):
+        with open(f"Data\\{filename}.txt", "w") as file:
+            for contact in self.__contact:
+                data = f"{contact.first_name} | {contact.last_name} | {contact.address} | {contact.city} | {contact.state} | {contact.zip} | {contact.phone_number} | {contact.email}\n"
+                file.write(data)
+
+        print("Contacts saved to file successfully!")
+
+
+    # Load contacts from file
+    def load_from_file(self, filename):
+        try:
+            with open(f"Data\\{filename}.txt", "r") as file:
+                for line in file:
+                    data = line.strip().split(" | ")
+
+                    if len(data) == 8:
+                        new_contact = contact(
+                            data[0], data[1], data[2],
+                            data[3], data[4], data[5],
+                            data[6], data[7]
+                        )
+                        self.add_contact(new_contact)
+                file.seek(0)
+                print("Adderss book : ",filename)
+                print(file.read())
+
+            print("Contacts loaded from file successfully!")
+
+        except FileNotFoundError:
+            print("File not found!")

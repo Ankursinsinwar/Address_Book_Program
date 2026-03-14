@@ -19,6 +19,8 @@ def main():
         print("9. Display number of person in the city and state in all Address Books")
         print("10. Sort person details by name")
         print("11. sort the person contact details on the basis of city, state, zip")
+        print("12. Save Contacts to File")
+        print("13. Load Contacts from File")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -45,13 +47,17 @@ def main():
             if book:
                 name = input("Enter the first name of the contact to edit: ")
                 book.edit_contact(name)
+                filename = next((k for k, v in books.Address_book.items() if v == book), None)
+                book.save_to_file(filename)
             else:
                 print("\nAddress book is empty or not initialized.\n")
             
         elif choice == '5':
             if book:
-                name = input("Enter the first name of the contact to edit: ")
+                name = input("Enter the first name of the contact to delete: ")
                 book.delete(name)
+                filename = next((k for k, v in books.Address_book.items() if v == book), None)
+                book.save_to_file(filename)
             else:
                 print("\nAddress book is empty or not initialized.\n")
 
@@ -92,6 +98,21 @@ def main():
             sort=input("Enter your choice: ")
             book.sort_city_state_zip(sort.lower())
             book.display_contacts()
+
+
+        elif choice == '12':
+            if book:
+                filename = next((k for k, v in books.Address_book.items() if v == book), None)
+                book.save_to_file(filename)
+            else:
+                print("Initialize Address Book first.")
+
+        elif choice == '13':
+            if book:
+                filename = next((k for k, v in books.Address_book.items() if v == book), None)
+                book.load_from_file(filename)
+            else:
+                print("Initialize Address Book first.")
 
         elif choice == '0':
             break
