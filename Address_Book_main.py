@@ -16,13 +16,14 @@ def main():
         print("6. Display Contacts in all Address Books")
         print("7. Display multiple person in the city or state in all Address Books")
         print("8. Display all person in the city and state in all Address Books")
+        print("9. Display number of person in the city and state in all Address Books")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
 
         if choice == '1':
             bok_name = input("Enter address book name: ")
-            book = books.add_Adress_book(bok_name)
+            book = books.add_Address_book(bok_name)
             print("\nAddress Book initialized.\n")
 
         elif choice == '2':
@@ -53,7 +54,7 @@ def main():
                 print("\nAddress book is empty or not initialized.\n")
 
         elif choice == '6':
-            books.display_Adress_books()
+            books.display_Address_books()
 
         elif choice == '7':
             city_state = input("Enter City or state: ")
@@ -65,6 +66,9 @@ def main():
             view = books.view_Person(city_name,State_name)
             print(view)
 
+        elif choice == '9':
+            city_state = input("Enter City or state: ")
+            books.count_Person(city_state)
 
 
         elif choice == '0':
