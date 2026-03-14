@@ -6,7 +6,7 @@ def main():
     print("\n--- Wellcome to Address Book ---\n")
     books = Address_Book_Manager()
     book = None
-
+    filename = "address_book"
     while True:
         print("1. Add/Initialize Address Book")
         print("2. Create and Add Contact")
@@ -21,6 +21,8 @@ def main():
         print("11. sort the person contact details on the basis of city, state, zip")
         print("12. Save Contacts to File")
         print("13. Load Contacts from File")
+        print("14. Save Contacts to JSON")
+        print("15. Load Contacts from JSON")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -47,8 +49,7 @@ def main():
             if book:
                 name = input("Enter the first name of the contact to edit: ")
                 book.edit_contact(name)
-                filename = next((k for k, v in books.Address_book.items() if v == book), None)
-                book.save_to_file(filename)
+                book.save_to_file(books,filename)
             else:
                 print("\nAddress book is empty or not initialized.\n")
             
@@ -56,8 +57,7 @@ def main():
             if book:
                 name = input("Enter the first name of the contact to delete: ")
                 book.delete(name)
-                filename = next((k for k, v in books.Address_book.items() if v == book), None)
-                book.save_to_file(filename)
+                book.save_to_file(books,filename)
             else:
                 print("\nAddress book is empty or not initialized.\n")
 
@@ -102,17 +102,23 @@ def main():
 
         elif choice == '12':
             if book:
-                filename = next((k for k, v in books.Address_book.items() if v == book), None)
-                book.save_to_file(filename)
+                
+                book.save_to_file(books,filename)
             else:
                 print("Initialize Address Book first.")
 
         elif choice == '13':
             if book:
-                filename = next((k for k, v in books.Address_book.items() if v == book), None)
-                book.load_from_file(filename)
+                book.load_from_file(books,filename)
             else:
                 print("Initialize Address Book first.")
+        
+        
+        elif choice == '14':
+            books.save_to_json()
+
+        elif choice == '15':
+            books.load_to_json()
 
         elif choice == '0':
             break
