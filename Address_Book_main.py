@@ -18,6 +18,7 @@ def main():
         print("8. Display all person in the city and state in all Address Books")
         print("9. Display number of person in the city and state in all Address Books")
         print("10. Sort person details by name")
+        print("11. sort the person contact details on the basis of city, state, zip")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -79,6 +80,18 @@ def main():
             book.sort_alphabetically()
             book.display_contacts()
 
+
+        elif choice == '11':
+            if book is None:
+                print("\nError: Please initialize the Address Book first (Option 1).\n")
+                continue
+            print("----------sort AddressBook on the basis of city, state, zip--------------")
+            print("a. sort on the basis of city")
+            print("b. sort on the basis of state")
+            print("c. sort on the basis of zip")
+            sort=input("Enter your choice: ")
+            book.sort_city_state_zip(sort.lower())
+            book.display_contacts()
 
         elif choice == '0':
             break

@@ -12,7 +12,7 @@ class address_book:
     def add_contact(self,contact):
         for cont in self.__contact:
             if cont.first_name == contact.first_name and cont.last_name == contact.last_name:
-                print("\nContact already exists !\n")
+                print("\nContact already epersonists !\n")
                 return
         self.__contact.append(contact)
         print("\nContact added successfully!\n")
@@ -106,3 +106,13 @@ class address_book:
 
     def sort_alphabetically(self):
         self.contact.sort(key = lambda person: person.first_name)
+
+    
+    def sort_city_state_zip(self,sort):
+        match sort:
+            case 'a':
+                self.contact.sort(key=lambda person: person.city)
+            case 'b':
+                self.contact.sort(key=lambda person: person.state)
+            case 'c':
+                self.contact.sort(key=lambda person: person.zip)
