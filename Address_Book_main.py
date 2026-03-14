@@ -17,6 +17,7 @@ def main():
         print("7. Display multiple person in the city or state in all Address Books")
         print("8. Display all person in the city and state in all Address Books")
         print("9. Display number of person in the city and state in all Address Books")
+        print("10. Sort person details by name")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -69,6 +70,14 @@ def main():
         elif choice == '9':
             city_state = input("Enter City or state: ")
             books.count_Person(city_state)
+        
+        
+        elif choice == '10':
+            if book is None:
+                print("\nError: Please initialize the Address Book first (Option 1).\n")
+                continue
+            book.sort_alphabetically()
+            book.display_contacts()
 
 
         elif choice == '0':

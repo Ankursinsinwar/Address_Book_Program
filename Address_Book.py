@@ -102,3 +102,7 @@ class address_book:
             print("User deleted")
         else:
             print("user not found")
+
+
+    def sort_alphabetically(self):
+        self.contact.sort(key = lambda person: person.first_name)
