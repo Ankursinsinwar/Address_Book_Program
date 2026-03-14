@@ -1,5 +1,6 @@
 from Address_Book import address_book
 from Contact import contact
+import json
 
 class Address_Book_Manager:
 
@@ -117,3 +118,50 @@ class Address_Book_Manager:
 
         except FileNotFoundError:
             print("File not found!")
+
+    
+    def save_to_json(self):
+        books = {}
+        for name, book in self.Address_book.items():
+            contacts = []
+            for person in book.contact:
+                data = {
+                "first_name": person.first_name,
+                "last_name": person.last_name,
+                "address": person.address,
+                "city": person.city,
+                "state": person.state,
+                "zip": person.zip,
+                "phone_number": person.phone_number,
+                "email": person.email
+                }
+                contacts.append(data)
+            books[name] = books.get(name,[]) + contacts
+        json.dump(books, open("Data\\address_book.json",'w'), indent=4)
+    
+    
+    def load_from_json(self):
+        try:
+            books = json.load(open("Data\\address_book.json",'r'))
+            for name, value in books.items():
+                if self.Address_book.get(name,None) is None:
+                    self.add_Address_book(name)
+                book = self.Address_book[name]
+                for person in value:
+                    new_contact = contact(
+                        person["first_name"],
+                        person["last_name"],
+                        person["address"],
+                        person["city"],
+                        person["state"],
+                        person["zip"],
+                        person["phone_number"],
+                        person["email"]
+                    )
+                    book.add_contact(new_contact)
+
+            print("Contacts loaded from JSON successfully!")
+
+        except FileNotFoundError:
+            print("File not found!")
+

@@ -21,6 +21,8 @@ def main():
         print("11. sort the person contact details on the basis of city, state, zip")
         print("12. Save Contacts to File")
         print("13. Load Contacts from File")
+        print("14. Save Contacts to JSON")
+        print("15. Load Contacts from JSON")
         print("0. Quit")
         
         choice = input("Enter your choice: ")
@@ -103,6 +105,14 @@ def main():
 
         elif choice == '13':
                 books.load_from_file(filename)
+
+                
+        elif choice == '14':
+            books.save_to_json()
+
+        elif choice == '15':
+            books.load_from_json()
+
 
 
         elif choice == '0':
