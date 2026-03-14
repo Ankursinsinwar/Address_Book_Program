@@ -1,9 +1,10 @@
 from Address_Book import address_book
+from Contact import contact
 
 class Address_Book_Manager:
 
     def __init__(self):
-        self.__Address_book={}
+        self.__Address_book=dict()
 
     @property
     def Address_book(self):
@@ -60,3 +61,59 @@ class Address_Book_Manager:
                     state_count+=1
         print("Number of contacts in city",city_state,":",city_count)
         print("Number of contacts in state",city_state,":",state_count)
+
+
+    def save_to_file(self, filename):
+        file_type = input(" Save to file [1] | to CSV [2] : ")
+        if(file_type=='1'):
+            type=' | '
+            extention=".txt"
+        elif(file_type=='2'):
+            type=","
+            extention=".csv"
+        else:
+            print("Enter valid option!")
+            return
+
+        with open(f"Data\\{filename}{extention}", "w") as file:
+            for name,book in self.Address_book.items():
+                for contact in book.contact:
+                    data = f"{name}{type}{contact.first_name}{type}{contact.last_name}{type}{contact.address}{type}{contact.city}{type}{contact.state}{type}{contact.zip}{type}{contact.phone_number}{type}{contact.email}\n"
+                    file.write(data)
+
+        print("Contacts saved to file successfully!")
+
+
+    def load_from_file(self, filename):
+        file_type = input(" Load from file [1] | to CSV [2] : ")
+        if(file_type=='1'):
+            type=' | '
+            extention=".txt"
+        elif(file_type=='2'):
+            type=","
+            extention=".csv"
+        else:
+            print("Enter valid option!")
+            return
+        try:
+            with open(f"Data\\{filename}{extention}", "r") as file:
+                for line in file:
+                    data = line.strip().split(type)
+
+                    if len(data) == 9:
+                        self.add_Address_book(data[0])
+                        book = self.Address_book[data[0]]
+                        new_contact = contact(
+                            data[1], data[2],
+                            data[3], data[4], data[5],
+                            data[6], data[7],  data[8]
+                        )
+                        book.add_contact(new_contact)
+                file.seek(0)
+                print("Adderss book : ",filename)
+                print(file.read())
+
+            print("Contacts loaded from file successfully!")
+
+        except FileNotFoundError:
+            print("File not found!")

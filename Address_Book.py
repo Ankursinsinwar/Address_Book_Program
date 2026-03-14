@@ -10,16 +10,16 @@ class address_book:
         return self.__contact
 
     def add_contact(self,contact):
-        for cont in self.__contact:
+        for cont in self.contact:
             if cont.first_name == contact.first_name and cont.last_name == contact.last_name:
                 print("\nContact already exists !\n")
                 return
-        self.__contact.append(contact)
+        self.contact.append(contact)
         print("\nContact added successfully!\n")
 
     def display_contacts(self):
         print("\n--------- Contacts --------------\n")
-        for contact in self.__contact:
+        for contact in self.contact:
             contact.display()
             print("-----------")
 
@@ -40,7 +40,7 @@ class address_book:
 
 
     def edit_contact(self, name):
-        for contact in self.__contact:
+        for contact in self.contact:
 
             if contact.first_name == name:
                 edit=True
@@ -93,9 +93,9 @@ class address_book:
 
     def delete(self,name):
         found=False
-        for contact in self.__contact:
+        for contact in self.contact:
             if contact.first_name==name:
-                self.__contact.remove(contact)
+                self.contact.remove(contact)
                 found=True
                 break   
         if(found==True):
@@ -117,60 +117,3 @@ class address_book:
             case 'c':
                 self.contact.sort(key=lambda person: person.zip)
 
-
-        # Save contacts to file
-    def save_to_file(self,books, filename):
-        file_type = input(" Save to file [1] | to CSV [2] : ")
-        if(file_type=='1'):
-            type=' | '
-            extention=".txt"
-        elif(file_type=='2'):
-            type=","
-            extention=".csv"
-        else:
-            print("Enter valid option!")
-            return
-
-        with open(f"Data\\{filename}{extention}", "w") as file:
-            for name,book in books.Address_book.items():
-                for contact in book.contact:
-                    data = f"{name}{type}{contact.first_name}{type}{contact.last_name}{type}{contact.address}{type}{contact.city}{type}{contact.state}{type}{contact.zip}{type}{contact.phone_number}{type}{contact.email}\n"
-                    file.write(data)
-
-        print("Contacts saved to file successfully!")
-
-
-    # Load contacts from file
-    def load_from_file(self,books, filename):
-        file_type = input(" Save to file [1] | to CSV [2] : ")
-        if(file_type=='1'):
-            type=' | '
-            extention=".txt"
-        elif(file_type=='2'):
-            type=","
-            extention=".csv"
-        else:
-            print("Enter valid option!")
-            return
-        try:
-            with open(f"Data\\{filename}{extention}", "r") as file:
-                for line in file:
-                    data = line.strip().split(type)
-
-                    if len(data) == 9:
-                        books.add_Address_book(data[0])
-                        book = books.Address_book[data[0]]
-                        new_contact = contact(
-                            data[1], data[2],
-                            data[3], data[4], data[5],
-                            data[6], data[7],  data[8]
-                        )
-                        book.add_contact(new_contact)
-                file.seek(0)
-                print("Adderss book : ",filename)
-                print(file.read())
-
-            print("Contacts loaded from file successfully!")
-
-        except FileNotFoundError:
-            print("File not found!")
