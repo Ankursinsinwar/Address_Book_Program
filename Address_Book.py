@@ -12,7 +12,7 @@ class address_book:
     def add_contact(self,contact):
         for cont in self.__contact:
             if cont.first_name == contact.first_name and cont.last_name == contact.last_name:
-                print("\nContact already epersonists !\n")
+                print("\nContact already exists !\n")
                 return
         self.__contact.append(contact)
         print("\nContact added successfully!\n")
