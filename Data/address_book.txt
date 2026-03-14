@@ -1,0 +1,4 @@
+b1 | aaaa | q | q | q | q | q | q | q
+b1 | r | w | w | w | w | w | w | w
+b2 | qwqw | w | w | w | w | w | w | w
+b2 | t | t | q | q | q | q | q | q
