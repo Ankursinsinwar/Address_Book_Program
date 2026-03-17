@@ -1,6 +1,4 @@
-from Address_Book_Manager import Address_Book_Manager
-from Address_Book import address_book
-from Contact import contact
+from App.services.Address_Book_Manager import Address_Book_Manager
 
 def main():
     print("\n--- Wellcome to Address Book ---\n")
@@ -120,6 +118,8 @@ def main():
 
         else:
             print("\nInvalid choice. Please try again.\n")
+
+
 
 if __name__ == "__main__":
     main()

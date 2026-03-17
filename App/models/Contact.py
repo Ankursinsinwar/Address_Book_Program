@@ -1,5 +1,16 @@
 class contact:
-
+    '''
+        - Contact Class
+          - `first_name`
+          - `last_name`
+          - `address`
+          - `city`
+          - `state`
+          - `zip`
+          - `email`
+          - `phone_number`
+        
+        '''
     def __init__(self, first_name, last_name, address, city,state, zip, phone_number, email):
         self.__first_name = first_name
         self.__last_name = last_name
@@ -10,17 +21,6 @@ class contact:
         self.__email = email
         self.__phone_number = phone_number
 
-        
-    def display(self):
-        print("Name\t: ", self.first_name, self.last_name)
-        print("Address\t: ", self.address)   
-        print("City\t:", self.city)
-        print("State\t:", self.state)
-        print("Zip\t:", self.zip)
-        print("Phone\t:", self.phone_number)
-        print("Email\t:", self.email, '\n')
-
-    
 
     @property
     def first_name(self):
@@ -99,3 +99,20 @@ class contact:
     @phone_number.setter
     def phone_number(self, value):
         self.__phone_number = value
+
+
+        
+    def display(self):
+        '''
+        - Display person contact details
+        
+        '''
+        print("Name\t: ", self.first_name, self.last_name)
+        print("Address\t: ", self.address)   
+        print("City\t:", self.city)
+        print("State\t:", self.state)
+        print("Zip\t:", self.zip)
+        print("Phone\t:", self.phone_number)
+        print("Email\t:", self.email, '\n')
+
+    

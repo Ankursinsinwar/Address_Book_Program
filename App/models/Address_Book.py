@@ -1,6 +1,11 @@
-from Contact import contact
+from App.models.Contact import contact
+from App.utils.Sorting import Sorting
 
-class address_book:
+class address_book(Sorting):
+    '''
+    - Address Book class
+     - `contact` []
+    '''
 
     def __init__(self):
         self.__contact=list()
@@ -9,7 +14,10 @@ class address_book:
     def contact(self):
         return self.__contact
 
-    def add_contact(self,contact):
+    def add_contact(self,contact) -> None :
+        '''
+        - Add contact to particular address book
+        '''
         for cont in self.contact:
             if cont.first_name == contact.first_name and cont.last_name == contact.last_name:
                 print("\nContact already exists !\n")
@@ -17,14 +25,21 @@ class address_book:
         self.contact.append(contact)
         print("\nContact added successfully!\n")
 
-    def display_contacts(self):
+    def display_contacts(self) -> None:
+        '''
+        - Print All the contacts in particular book
+        '''
         print("\n--------- Contacts --------------\n")
         for contact in self.contact:
             contact.display()
             print("-----------")
 
     
-    def create_contact(self):
+    def create_contact(self) -> None :
+        '''
+        - Create and add a contact to particular address book
+        
+        '''
         first_name=input("\nEnter your first name: ")
         last_name=input("Enter your Last name: ")
         address=input("Enter your address: ")
@@ -39,7 +54,11 @@ class address_book:
 
 
 
-    def edit_contact(self, name):
+    def edit_contact(self, name) -> None:
+        '''
+        - Edit a contact to particular address book
+        
+        '''
         for contact in self.contact:
 
             if contact.first_name == name:
@@ -91,7 +110,11 @@ class address_book:
  
  
 
-    def delete(self,name):
+    def delete(self,name) -> None:
+        '''
+        - Delete a contact to particular address book
+        
+        '''
         found=False
         for contact in self.contact:
             if contact.first_name==name:
@@ -104,16 +127,5 @@ class address_book:
             print("user not found")
 
 
-    def sort_alphabetically(self):
-        self.contact.sort(key = lambda person: person.first_name)
-
     
-    def sort_city_state_zip(self,sort):
-        match sort:
-            case 'a':
-                self.contact.sort(key=lambda person: person.city)
-            case 'b':
-                self.contact.sort(key=lambda person: person.state)
-            case 'c':
-                self.contact.sort(key=lambda person: person.zip)
 
